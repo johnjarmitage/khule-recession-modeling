@@ -132,7 +132,7 @@ As part of the PRESSurE Project conducted following the Gorkha earthquake in 201
 \label{fg:rain2discharge}
 \end{figure}
 
-\subsection{Discharge estimation}
+\subsection{Discharge and recession estimation}
 
 In Kahule Khola catchment, groundwater recharge occurs by monsoonal rainfall. To capture the spatial and temporal related storage dynamics of the catchment, we estimated the river discharge ($Q$) at the outlet using the Manning-Strickler equation,
 \begin{equation}
@@ -150,7 +150,7 @@ where $b$ [m] is the width of the channel and $h$ [m] is the average river heigh
 
 From the discharge time series we use the method of \cite{kirchner-2009} with the addition of a bootstrap method to estimate the recession characteristics and the uncertainty in the values for the three post monsoon seasons in our time series (Figure \ref{fg:rain2discharge}). First $dQ/dt$ is calculated along the time series and all values of $dQ/dt$, including positive values are sorted along with the corresponding value of $Q$. The data is then binned into bins defined by the logarithmic range of the data, where by bins are populated depending on if the standard error in the population of data points is less than half of the mean (including both positive and negative $dQ/dt$). For a full description of the binning algorithm see \cite{kirchner-2009}. 
 
-We subsequently note that the data show a separation between trends for early and late recession, and split the binned data to run a linear regression. Linear regressions are run using a bootstrap method to asses the range of potential $b$. We make a repeat re-sampling of the binned data, removing a data point each time, to find the different potential fits to the recession analysis.
+We subsequently note that the data show a separation between trends for early and late recession, and split the binned data to run two linear regressions. Following the method outlined in \cite{tashie-etal-2020}, we search for the knickpoint in the recession that provides the highest early recession $b$ parameter, and assume that htis marks the transition from early ot late recession. Linear regressions are run using a bootstrap method to asses the range of potential $b$ for both early and late recession.
 
 \subsection{Compartmentalized groundwater model}
 
@@ -256,7 +256,7 @@ To simulate a hydrological cycle representative of the Kahule Khola catchment, e
 
 \subsection{Recession analysis}
 
-The 5 minute stage height data is converted to a discharge using the Manning-Strickler and Chezy model and subsequently the recession is analysed for the three post-monsoon seasons from 2016 to 2018. The two models to convert stage height to discharge give very similar trends for the recession analysis (Figure \ref{fg:recession}). The discharge magnitude is slightly higher with the Chézy model, however this is due to the choice of the roughness coefficient. The recessions are split into an early and late recession, where for the Manning Strickler model and Chézy model, the transition occurs at a discharge of $4.8\rm\,m^{3}s^{-1}$. From bootstrap re-sampling we find that the early recession $b$ is within the range $3.5 < b < 13.5$, with the two models overlapping in range (Figure \ref{fg:recession}). For the late recession the range is $2.4 < b < 3.2$ with a significant overlap in the two ranges (Figure \ref{fg:recession}).
+The 5 minute stage height data is converted to a discharge using the Manning-Strickler and Chezy model and subsequently the recession is analysed for the three post-monsoon seasons from 2016 to 2018. The two models to convert stage height to discharge give very similar trends for the recession analysis (Figure \ref{fg:recession}). The discharge magnitude is slightly higher with the Chézy model, however this is due to the choice of the roughness coefficient. The recessions are split into an early and late recession following the method outlined in \cite{tashie-etal-2020}. From bootstrap re-sampling we find that the early recession $b$ is within the range $5.6 < b < 12.8$, with the two models overlapping in range (Figure \ref{fg:recession}). For the late recession the range is $2.4 < b < 3.3$ with a significant overlap in the two ranges (Figure \ref{fg:recession}).
 
 \begin{figure}
 \includegraphics[width=.8\linewidth]{./figures/figure05.png}
@@ -267,8 +267,8 @@ The 5 minute stage height data is converted to a discharge using the Manning-Str
 The late recession is consistently higher than model derived estimates for $b$ in steep compartmentalised systems \citep{rupp-2006,roques-etal-2022}. In comparison to the USGS data, the late recession value of $b$ is within the outliers (Figure \ref{fg:compare}). It is worth noting that within the USGS data high recession values are found for regions classified as semiarid mountains with impermeable soils and permeable bedrock \citep{tashie-etal-2020}. The early recession values are very high, significantly higher than those captured in the time-dependent modelling of discharge of a steep compartmentalised system \citep{roques-etal-2022} and likewise plot as an outlier against the USGS data (Figure \ref{fg:compare}).
 
 \begin{figure}
-\includegraphics[width=5cm]{./figures/figure06.png}
-\caption{Comparison of early and late recession values to USGS observations \citep{tashie-etal-2020}. The bar plot is for the USGS data, while the scattered yellow circles show the range of $b$ calculated form the bootstrap method (Figure \ref{fg:recession}).}
+\includegraphics[width=10cm]{./figures/figure06.png}
+\caption{Comparison of early and late recession values from USGS observations \citep{tashie-etal-2020} and the potential range in $b$ for the Kahule Khola calculated form the bootstrap method (Figure \ref{fg:recession}).}
 \label{fg:compare}
 \end{figure}
 
